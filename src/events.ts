@@ -3,6 +3,14 @@ import type { FunctionalAnalyticsEvent } from "./analytics";
 import type { StrictlyNecessaryAnalyticsEvent } from "./analytics";
 import type { MarketingAnalyticsEvent } from "./analytics";
 
+/**
+ * &nbsp;
+ *
+ * ## Description
+ * Fired on the /pet-insurance page, whenever the fletch widget is shown.
+ *
+ * &nbsp;
+ */
 export interface PetInsuranceFletchWidgetShown
   extends PerformanceAnalyticsEvent {
   eventName: "pet-insurance-fletch-widget-shown";
