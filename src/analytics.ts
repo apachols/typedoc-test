@@ -8,4 +8,4 @@ export interface AnalyticsEvent {
 export interface PerformanceAnalyticsEvent extends AnalyticsEvent {}
 export interface FunctionalAnalyticsEvent extends AnalyticsEvent {}
 export interface StrictlyNecessaryAnalyticsEvent extends AnalyticsEvent {}
-export interface MarketingNecessaryAnalyticsEvent extends AnalyticsEvent {}
+export interface MarketingAnalyticsEvent extends AnalyticsEvent {}

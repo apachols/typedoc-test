@@ -1,7 +1,7 @@
 import type { PerformanceAnalyticsEvent } from "./analytics";
 import type { FunctionalAnalyticsEvent } from "./analytics";
 import type { StrictlyNecessaryAnalyticsEvent } from "./analytics";
-import type { MarketingNecessaryAnalyticsEvent } from "./analytics";
+import type { MarketingAnalyticsEvent } from "./analytics";
 
 export interface PetInsuranceFletchWidgetShown
   extends PerformanceAnalyticsEvent {
@@ -27,8 +27,7 @@ export interface PetInsurancePetSelectorView
   observabilityTags: Record<string, never>;
 }
 
-export interface PetInsurancePetSelectorClick
-  extends MarketingNecessaryAnalyticsEvent {
+export interface PetInsurancePetSelectorClick extends MarketingAnalyticsEvent {
   eventName: "pet-insurance-pet-selector-click";
   eventProperties: {
     petOPK: string;
