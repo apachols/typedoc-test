@@ -5,13 +5,13 @@ import type { PetInsurancePetSelectorView } from "./events";
 import type { PetInsurancePetSelectorClick } from "./events";
 import type { PetInsuranceCtaShown } from "./events";
 
-/* All members of the MetricEventMap need to extend AnalyticsEvent */
+/* All members of the AnalyticsEventMap need to extend AnalyticsEvent */
 
-type MetricEventMapType = Record<string, AnalyticsEvent>;
+type AnalyticsEventMapType = Record<string, AnalyticsEvent>;
 
-/* Add all Event types to MetricEventMap, which restricts what can be fired by emitAnalyticsEvent */
+/* Add all Event types to AnalyticsEventMap, which restricts what can be fired by emitAnalyticsEvent */
 
-interface MetricEventMap extends MetricEventMapType {
+interface AnalyticsEventMap extends AnalyticsEventMapType {
   "pet-insurance-fletch-widget-shown": PetInsuranceFletchWidgetShown;
   "pet-insurance-fletch-logged-out-view": PetInsuranceFletchLoggedOutView;
   "pet-insurance-pet-selector-view": PetInsurancePetSelectorView;
@@ -19,18 +19,18 @@ interface MetricEventMap extends MetricEventMapType {
   "pet-insurance-cta-shown": PetInsuranceCtaShown;
 }
 
-export type EventName = keyof MetricEventMap;
+export type EventName = keyof AnalyticsEventMap;
 
 export type EventProperties<T extends EventName> =
-  T extends keyof MetricEventMap
-    ? MetricEventMap[T] extends { eventProperties: infer P }
+  T extends keyof AnalyticsEventMap
+    ? AnalyticsEventMap[T] extends { eventProperties: infer P }
       ? P
       : never
     : never;
 
 export type ObservabilityTags<T extends EventName> =
-  T extends keyof MetricEventMap
-    ? MetricEventMap[T] extends { observabilityTags: infer P }
+  T extends keyof AnalyticsEventMap
+    ? AnalyticsEventMap[T] extends { observabilityTags: infer P }
       ? P
       : never
     : never;
