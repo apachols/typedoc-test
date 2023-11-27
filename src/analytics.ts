@@ -1,7 +1,5 @@
 type EventProperty = string | number;
 
-type ObservabilityTag = string | number;
-
 export interface AnalyticsEvent {
   eventName: string;
   eventProperties: Record<string, EventProperty>;
