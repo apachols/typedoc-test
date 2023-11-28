@@ -6,6 +6,8 @@ import type {
 } from "./events";
 import { PetInsuranceCtaShown, PetInsurancePetSelectorClick } from "./events";
 
+export { default as emitAnalyticsEvent } from "./emitAnalyticsEvent";
+
 /* All members of the AnalyticsEventMap need to extend AnalyticsEvent */
 
 type AnalyticsEventMapType = Record<string, AnalyticsEvent>;
