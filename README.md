@@ -11,5 +11,5 @@ npm i
 ## To generate docs
 
 ```
-npx typedoc --name Eventstream --out docs src/events.ts --customCss override.css
+npx typedoc --name Eventstream --out docs --customCss override.css --searchInComments src/events.ts
 ```
