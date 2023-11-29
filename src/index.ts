@@ -1,10 +1,11 @@
 import type { AnalyticsEvent } from "./analytics";
-import type {
+import {
+  PetInsuranceCtaShown,
   PetInsuranceFletchLoggedOutView,
   PetInsuranceFletchWidgetShown,
+  PetInsurancePetSelectorClick,
   PetInsurancePetSelectorView,
 } from "./events";
-import { PetInsuranceCtaShown, PetInsurancePetSelectorClick } from "./events";
 
 export { default as emitAnalyticsEvent } from "./emitAnalyticsEvent";
 
@@ -12,7 +13,7 @@ export { default as emitAnalyticsEvent } from "./emitAnalyticsEvent";
 
 type AnalyticsEventMapType = Record<string, AnalyticsEvent>;
 
-/* Add all Event types to AnalyticsEventMap, which restricts what can be fired by emitAnalyticsEvent */
+/* 1. Add all Event types to AnalyticsEventMap, which restricts what can be fired by emitAnalyticsEvent */
 
 export interface AnalyticsEventMap extends AnalyticsEventMapType {
   "pet-insurance-fletch-widget-shown": PetInsuranceFletchWidgetShown;
@@ -22,24 +23,40 @@ export interface AnalyticsEventMap extends AnalyticsEventMapType {
   "pet-insurance-cta-shown": PetInsuranceCtaShown;
 }
 
+/* 2. Add all Event types eventClassMap, which buildAnalyticsEvent uses
+      to build the correct class, which provides config'd properties at runtime
+*/
+
+const eventClassMap = {
+  "pet-insurance-fletch-widget-shown": PetInsuranceFletchWidgetShown,
+  "pet-insurance-fletch-logged-out-view": PetInsuranceFletchLoggedOutView,
+  "pet-insurance-pet-selector-view": PetInsurancePetSelectorView,
+  "pet-insurance-pet-selector-click": PetInsurancePetSelectorClick,
+  "pet-insurance-cta-shown": PetInsuranceCtaShown,
+};
+
 export const buildAnalyticsEvent = <T extends EventName>(
   eventName: T,
   eventProperties: EventProperties<T> = {} as EventProperties<T>,
   observabilityTags: ObservabilityTags<T> = {} as ObservabilityTags<T>
 ): AnalyticsEvent => {
-  if (eventName === "pet-insurance-pet-selector-click") {
-    return new PetInsurancePetSelectorClick(
-      eventProperties as EventProperties<"pet-insurance-pet-selector-click">,
-      observabilityTags as ObservabilityTags<"pet-insurance-pet-selector-click">
-    );
+  let eventObject = null;
+
+  Object.keys(eventClassMap).forEach((key) => {
+    const EventClass = eventClassMap[key];
+    if (eventName === key) {
+      eventObject = new EventClass(
+        eventProperties as EventProperties<typeof eventName>,
+        observabilityTags as ObservabilityTags<typeof eventName>
+      );
+    }
+  });
+
+  if (eventObject != null) {
+    return eventObject;
   }
-  if (eventName === "pet-insurance-cta-shown") {
-    return new PetInsuranceCtaShown(
-      eventProperties as EventProperties<"pet-insurance-cta-shown">,
-      observabilityTags as ObservabilityTags<"pet-insurance-cta-shown">
-    );
-  }
-  throw new Error("Missing Event Type in buildAnalyticsEvent");
+
+  throw new Error(`Missing Event Type in buildAnalyticsEvent: ${eventName}`);
 };
 
 export type EventName = keyof AnalyticsEventMap;

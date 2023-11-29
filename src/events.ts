@@ -1,6 +1,15 @@
 /* eslint-disable max-classes-per-file */
-import type { AnalyticsEvent } from "./analytics";
+import { AnalyticsEvent } from "./analytics";
 
+/**
+ * &nbsp;
+ *
+ * # Description
+ *
+ * Fires when the pet selector is clicked on the pet insurance page.
+ *
+ * &nbsp;
+ */
 export class PetInsurancePetSelectorClick implements AnalyticsEvent {
   eventName = "pet-insurance-pet-selector-click";
 
@@ -21,7 +30,16 @@ export class PetInsurancePetSelectorClick implements AnalyticsEvent {
   }
 }
 
-export class PetInsuranceCtaShown implements AnalyticsEvent {
+/**
+ * &nbsp;
+ *
+ * # Description
+ *
+ * Fires when the Pet Insurance CTA is shown
+ *
+ * &nbsp;
+ */
+export class PetInsuranceCtaShown extends AnalyticsEvent {
   eventName = "pet-insurance-cta-shown";
 
   consentPurpose = "performance";
@@ -42,28 +60,72 @@ export class PetInsuranceCtaShown implements AnalyticsEvent {
       ctaSource: string;
     }
   ) {
+    super({}, {});
     this.eventProperties = eventProperties;
     this.observabilityTags = observabilityTags;
   }
 }
 
-export interface PetInsuranceFletchWidgetShown extends AnalyticsEvent {
-  eventName: "pet-insurance-fletch-widget-shown";
+/**
+ * &nbsp;
+ *
+ * # Description
+ *
+ * Fires when the Fletch widget is shown
+ *
+ * &nbsp;
+ */
+export class PetInsuranceFletchWidgetShown extends AnalyticsEvent {
+  eventName = "pet-insurance-fletch-widget-shown";
+
+  consentPurpose = "marketing";
+
   eventProperties: {
     ownerFieldsPrefilled: number;
     petFieldsPrefilled: number;
   };
-  observabilityTags: Record<string, never>;
+
+  observabilityTags = {};
+
+  constructor(
+    eventProperties: {
+      ownerFieldsPrefilled: number;
+      petFieldsPrefilled: number;
+    },
+    observabilityTags: Record<string, never>
+  ) {
+    super({}, {});
+    this.eventProperties = eventProperties;
+    this.observabilityTags = observabilityTags;
+  }
 }
 
-export interface PetInsuranceFletchLoggedOutView extends AnalyticsEvent {
-  eventName: "pet-insurance-fletch-logged-out-view";
-  eventProperties: Record<string, never>;
-  observabilityTags: Record<string, never>;
+/**
+ * &nbsp;
+ *
+ * # Description
+ *
+ * Fires when the pet insurance page renders for a logged out user
+ *
+ * &nbsp;
+ */
+export class PetInsuranceFletchLoggedOutView extends AnalyticsEvent {
+  eventName = "pet-insurance-fletch-logged-out-view";
+
+  consentPurpose = "functional";
 }
 
-export interface PetInsurancePetSelectorView extends AnalyticsEvent {
-  eventName: "pet-insurance-pet-selector-view";
-  eventProperties: Record<string, never>;
-  observabilityTags: Record<string, never>;
+/**
+ * &nbsp;
+ *
+ * # Description
+ *
+ * Fires when a user sees the pet selector on the pet insurance page
+ *
+ * &nbsp;
+ */
+export class PetInsurancePetSelectorView extends AnalyticsEvent {
+  eventName = "pet-insurance-pet-selector-view";
+
+  consentPurpose = "strictly-necessary";
 }

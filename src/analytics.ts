@@ -1,10 +1,17 @@
-type EventProperty = string | number;
+export abstract class AnalyticsEvent {
+  abstract eventName: string;
 
-type ObservabilityTag = string | number;
+  abstract consentPurpose: string;
 
-export interface AnalyticsEvent {
-  eventName: string;
-  consentPurpose: string;
-  eventProperties: Record<string, EventProperty>;
-  observabilityTags: Record<string, ObservabilityTag>;
+  eventProperties = {};
+
+  observabilityTags = {};
+
+  constructor(
+    eventProperties: Record<string, never>,
+    observabilityTags: Record<string, never>
+  ) {
+    this.eventProperties = eventProperties;
+    this.observabilityTags = observabilityTags;
+  }
 }
