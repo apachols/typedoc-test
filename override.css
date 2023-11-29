@@ -1,0 +1,21 @@
+.page-menu {
+    grid-area: none;
+    display: none;
+}
+
+.tsd-hierarchy {
+    display: none;
+}
+
+.tsd-index-group {
+    display: none;
+}
+
+/* These next two rules hide the "Constructor" section, which does not have its own css class... */
+.col-content > .tsd-member-group {
+    display: none;
+}
+
+.col-content > .tsd-member-group ~ .tsd-member-group {
+    display: block;
+}
