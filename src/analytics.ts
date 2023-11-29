@@ -8,10 +8,10 @@ export abstract class AnalyticsEvent {
   observabilityTags = {};
 
   constructor(
-    eventProperties: Record<string, never>,
-    observabilityTags: Record<string, never>
+    eventProperties?: Record<string, never>,
+    observabilityTags?: Record<string, never>
   ) {
-    this.eventProperties = eventProperties;
-    this.observabilityTags = observabilityTags;
+    this.eventProperties = eventProperties || {};
+    this.observabilityTags = observabilityTags || {};
   }
 }

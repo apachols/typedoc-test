@@ -21,12 +21,8 @@ export class PetInsurancePetSelectorClick implements AnalyticsEvent {
 
   observabilityTags = {};
 
-  constructor(
-    eventProperties: { petOPK: string },
-    observabilityTags: Record<string, never>
-  ) {
+  constructor(eventProperties: { petOPK: string }) {
     this.eventProperties = eventProperties;
-    this.observabilityTags = observabilityTags;
   }
 }
 
@@ -87,16 +83,12 @@ export class PetInsuranceFletchWidgetShown extends AnalyticsEvent {
 
   observabilityTags = {};
 
-  constructor(
-    eventProperties: {
-      ownerFieldsPrefilled: number;
-      petFieldsPrefilled: number;
-    },
-    observabilityTags: Record<string, never>
-  ) {
+  constructor(eventProperties: {
+    ownerFieldsPrefilled: number;
+    petFieldsPrefilled: number;
+  }) {
     super({}, {});
     this.eventProperties = eventProperties;
-    this.observabilityTags = observabilityTags;
   }
 }
 
