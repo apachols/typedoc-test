@@ -1,6 +1,11 @@
 /* eslint-disable max-classes-per-file */
 import { AnalyticsEvent } from "./analytics";
 
+import type {
+  ConsentPurposeMarketing,
+  ConsentPurposeFunctional,
+} from "./analytics";
+
 /**
  * &nbsp;
  *
@@ -13,7 +18,7 @@ import { AnalyticsEvent } from "./analytics";
 export class PetInsurancePetSelectorClick implements AnalyticsEvent {
   eventName = "pet-insurance-pet-selector-click";
 
-  consentPurpose = "marketing";
+  consentPurpose = "marketing" as ConsentPurposeMarketing;
 
   eventProperties: {
     petOPK: string;
@@ -38,7 +43,7 @@ export class PetInsurancePetSelectorClick implements AnalyticsEvent {
 export class PetInsuranceCtaShown extends AnalyticsEvent {
   eventName = "pet-insurance-cta-shown";
 
-  consentPurpose = "performance";
+  consentPurpose = "marketing" as ConsentPurposeMarketing;
 
   eventProperties: {
     personId: string;
@@ -74,7 +79,7 @@ export class PetInsuranceCtaShown extends AnalyticsEvent {
 export class PetInsuranceFletchWidgetShown extends AnalyticsEvent {
   eventName = "pet-insurance-fletch-widget-shown";
 
-  consentPurpose = "marketing";
+  consentPurpose = "marketing" as ConsentPurposeMarketing;
 
   eventProperties: {
     ownerFieldsPrefilled: number;
@@ -104,7 +109,7 @@ export class PetInsuranceFletchWidgetShown extends AnalyticsEvent {
 export class PetInsuranceFletchLoggedOutView extends AnalyticsEvent {
   eventName = "pet-insurance-fletch-logged-out-view";
 
-  consentPurpose = "functional";
+  consentPurpose = "functional" as ConsentPurposeFunctional;
 }
 
 /**
@@ -119,5 +124,5 @@ export class PetInsuranceFletchLoggedOutView extends AnalyticsEvent {
 export class PetInsurancePetSelectorView extends AnalyticsEvent {
   eventName = "pet-insurance-pet-selector-view";
 
-  consentPurpose = "strictly-necessary";
+  consentPurpose = "functional" as ConsentPurposeFunctional;
 }
