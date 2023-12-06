@@ -1,10 +1,7 @@
-/* eslint-disable max-classes-per-file */
+// /* eslint-disable max-classes-per-file */
+// import { CONCEPTS } from '@rover/rsdk/concepts';
+import type { ConsentPurpose } from "./analytics";
 import { AnalyticsEvent } from "./analytics";
-
-import type {
-  ConsentPurposeMarketing,
-  ConsentPurposeFunctional,
-} from "./analytics";
 
 /**
  * &nbsp;
@@ -18,7 +15,9 @@ import type {
 export class PetInsurancePetSelectorClick implements AnalyticsEvent {
   eventName = "pet-insurance-pet-selector-click";
 
-  consentPurpose = "marketing" as ConsentPurposeMarketing;
+  consentPurpose: ConsentPurpose = "performance";
+
+  // concept = CONCEPTS.service_offerings.insurance;
 
   eventProperties: {
     petOPK: string;
@@ -43,7 +42,9 @@ export class PetInsurancePetSelectorClick implements AnalyticsEvent {
 export class PetInsuranceCtaShown extends AnalyticsEvent {
   eventName = "pet-insurance-cta-shown";
 
-  consentPurpose = "marketing" as ConsentPurposeMarketing;
+  consentPurpose: ConsentPurpose = "performance";
+
+  // concept = CONCEPTS.service_offerings.insurance;
 
   eventProperties: {
     personId: string;
@@ -79,11 +80,14 @@ export class PetInsuranceCtaShown extends AnalyticsEvent {
 export class PetInsuranceFletchWidgetShown extends AnalyticsEvent {
   eventName = "pet-insurance-fletch-widget-shown";
 
-  consentPurpose = "marketing" as ConsentPurposeMarketing;
+  consentPurpose: ConsentPurpose = "performance";
+
+  // concept = CONCEPTS.service_offerings.insurance;
 
   eventProperties: {
     ownerFieldsPrefilled: number;
     petFieldsPrefilled: number;
+    petOPK?: string;
   };
 
   observabilityTags = {};
@@ -91,6 +95,7 @@ export class PetInsuranceFletchWidgetShown extends AnalyticsEvent {
   constructor(eventProperties: {
     ownerFieldsPrefilled: number;
     petFieldsPrefilled: number;
+    petOPK?: string;
   }) {
     super({}, {});
     this.eventProperties = eventProperties;
@@ -109,7 +114,9 @@ export class PetInsuranceFletchWidgetShown extends AnalyticsEvent {
 export class PetInsuranceFletchLoggedOutView extends AnalyticsEvent {
   eventName = "pet-insurance-fletch-logged-out-view";
 
-  consentPurpose = "functional" as ConsentPurposeFunctional;
+  consentPurpose: ConsentPurpose = "performance";
+
+  // concept = CONCEPTS.service_offerings.insurance;
 }
 
 /**
@@ -124,5 +131,7 @@ export class PetInsuranceFletchLoggedOutView extends AnalyticsEvent {
 export class PetInsurancePetSelectorView extends AnalyticsEvent {
   eventName = "pet-insurance-pet-selector-view";
 
-  consentPurpose = "functional" as ConsentPurposeFunctional;
+  consentPurpose: ConsentPurpose = "performance";
+
+  // concept = CONCEPTS.service_offerings.insurance;
 }

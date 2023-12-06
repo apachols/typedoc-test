@@ -1,3 +1,5 @@
+// import type { Concept } from '@rover/rsdk/concepts';
+
 export type ConsentPurposeFunctional = "functional";
 
 export type ConsentPurposePerformance = "performance";
@@ -16,6 +18,8 @@ export abstract class AnalyticsEvent {
   abstract eventName: string;
 
   abstract consentPurpose: ConsentPurpose;
+
+  // abstract concept: Concept;
 
   eventProperties = {};
 
