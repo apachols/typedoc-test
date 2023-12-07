@@ -11,8 +11,13 @@
     display: none;
 }
 
-.tsd-parameter {
-    display: none;
+li > .tsd-parameters {
+    border: 1px solid gray;
+    padding-bottom: 5px;
+}
+
+li.tsd-description > .tsd-parameters {
+    border: none;
 }
 
 .tsd-is-inherited {
