@@ -1,4 +1,4 @@
-import type { AnalyticsEvent } from "./analytics";
+import type { AnalyticsEvent } from "./types";
 
 export default function emitAnalyticsEvent(
   analyticsEvent: AnalyticsEvent

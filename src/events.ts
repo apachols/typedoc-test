@@ -1,7 +1,7 @@
 // /* eslint-disable max-classes-per-file */
 // import { CONCEPTS } from '@rover/rsdk/concepts';
-import type { ConsentPurpose } from "./analytics";
-import { AnalyticsEvent } from "./analytics";
+import type { ConsentPurpose } from "./types";
+import { AnalyticsEvent } from "./types";
 
 /**
  * &nbsp;
