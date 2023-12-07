@@ -12,21 +12,20 @@ import { AnalyticsEvent } from "./analytics";
  *
  * &nbsp;
  */
-export class PetInsurancePetSelectorClick implements AnalyticsEvent {
+export class PetInsurancePetSelectorClick extends AnalyticsEvent {
   eventName = "pet-insurance-pet-selector-click";
 
   consentPurpose: ConsentPurpose = "performance";
 
   // concept = CONCEPTS.service_offerings.insurance;
 
-  eventProperties: {
+  constructor(eventProperties: {
+    /**
+     * _The pet's obfuscated primary key_
+     */
     petOPK: string;
-  };
-
-  observabilityTags = {};
-
-  constructor(eventProperties: { petOPK: string }) {
-    this.eventProperties = eventProperties;
+  }) {
+    super(eventProperties);
   }
 }
 
@@ -46,25 +45,13 @@ export class PetInsuranceCtaShown extends AnalyticsEvent {
 
   // concept = CONCEPTS.service_offerings.insurance;
 
-  eventProperties: {
-    personId: string;
-    platform: string;
-    ctaSource: string;
-  };
-
-  observabilityTags: {
-    ctaSource: string;
-  };
-
   constructor(
     eventProperties: { personId: string; platform: string; ctaSource: string },
     observabilityTags: {
       ctaSource: string;
     }
   ) {
-    super({}, {});
-    this.eventProperties = eventProperties;
-    this.observabilityTags = observabilityTags;
+    super(eventProperties, observabilityTags);
   }
 }
 
@@ -84,21 +71,12 @@ export class PetInsuranceFletchWidgetShown extends AnalyticsEvent {
 
   // concept = CONCEPTS.service_offerings.insurance;
 
-  eventProperties: {
-    ownerFieldsPrefilled: number;
-    petFieldsPrefilled: number;
-    petOPK?: string;
-  };
-
-  observabilityTags = {};
-
   constructor(eventProperties: {
     ownerFieldsPrefilled: number;
     petFieldsPrefilled: number;
     petOPK?: string;
   }) {
-    super({}, {});
-    this.eventProperties = eventProperties;
+    super(eventProperties);
   }
 }
 

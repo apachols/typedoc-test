@@ -21,13 +21,13 @@ export abstract class AnalyticsEvent {
 
   // abstract concept: Concept;
 
-  eventProperties = {};
+  eventProperties: Record<string, unknown> = {};
 
-  observabilityTags = {};
+  observabilityTags: Record<string, unknown> = {};
 
   constructor(
-    eventProperties?: Record<string, never>,
-    observabilityTags?: Record<string, never>
+    eventProperties?: Record<string, unknown>,
+    observabilityTags?: Record<string, unknown>
   ) {
     this.eventProperties = eventProperties || {};
     this.observabilityTags = observabilityTags || {};
